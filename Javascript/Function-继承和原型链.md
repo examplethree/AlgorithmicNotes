@@ -27,7 +27,6 @@
     const doSomeInstancing = new doSomething();
     doSomeInstancing.prop = "some value"; // 向该对象添加一个属性
     console.log(doSomeInstancing);
-
  ```
 如上所示，`doSomeInstancing` 的 `[[Prototype]]` 是 `doSomething.prototype`。但是，这是做什么的呢？当你访问 `doSomeInstancing` 的属性时，运行时首先会查找 `doSomeInstancing` 是否有该属性。  
 
