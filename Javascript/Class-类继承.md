@@ -13,7 +13,7 @@ JavaScript 中所有的对象都有一个内置属性，称为它的 prototype�
    let animal = new Animal("My animal");
 ```
    对象 `animal` 和class `Animal`的图形化表示
-   ![类对象](../Pictures//1699949504847.jpg "图形化")
+   ![类对象](../Pictures/类的原型链.jpg "图形化")
 
 ```
    const myDate = new Date();
