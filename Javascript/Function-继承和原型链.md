@@ -14,6 +14,7 @@
     function Constructor() {}
 
     const obj = new Constructor();
+    // 以下箭头均表示访问[[prototype]]，即箭首对象的[[prototype]]是箭尾对象
     // obj ---> Constructor.prototype ---> Object.prototype ---> null
  ```
  要构建更长的原型链，可用通过 Object.setPrototypeOf() 函数设置 Constructor.prototype 的 [[Prototype]]。
