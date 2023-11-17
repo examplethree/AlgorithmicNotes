@@ -31,8 +31,13 @@ JavaScript 中所有的对象都有一个内置属性，称为它的 prototype�
 ![对象实例包含的原型链](../Pictures/mydate-prototype-chain.svg "原型链")
 
 ## extend怎么实现继承的
-  extends语法糖做的事
+  1. extends语法糖做的事
   ![extends实现继承的过程中做了什么](../Pictures/whatextendsdo.png "what extends do")
   
-  手动实现继承，也就是原型链和调用构造函数的组合方法实现继承，做的事
+  2. 手动实现继承，也就是原型链和调用构造函数的组合方法实现继承，做的事
   ![手动继承的过程中做了什么](../Pictures/画手动继承原型链.png "without Syntactic sugar")
+
+  * Javascript内建对象同样也使用原型继承实现。例如，`Date.prototype.[[Prototype]]` 是 `Object.prototype`。
+  ![内建原型](../Pictures/内建原型原型链.jpg "内建原型原型链")
+
+## 
