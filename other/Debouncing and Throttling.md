@@ -59,7 +59,7 @@
                 executable = false;
                 setTimeout(timeoutFunc, delay);
             }
-            else{
+            else{//执行到该分支表明，一定是在该等待的时候调用了函数
                 waitargs = args;
             }
         };
