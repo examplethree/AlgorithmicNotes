@@ -43,3 +43,44 @@ function flatten(array){
 function reserve(num){
     let str=num.toString();
 }
+
+
+function throttle(cb, delay){
+    let shouldwait=false;
+
+    return function(...args){
+        if(!shouldwait){
+            cb(...args);
+            shouldwait = true;
+            setTimeout(()=>{
+                shouldwait = false;
+            }, delay);
+        }
+    };
+}
+
+function throttle2(cb, delay){
+    let shouldwait=false, argwaiting=null;
+
+    function timeoutFunc(){
+        if(argwaiting){
+            cb(...args);
+            argwaiting = null;
+            setTimeout(timeoutFunc, delay);
+        } 
+        else{
+            shouldwait = false;
+        }
+    }
+
+    return function(...args){
+        if(!shouldwait){
+            cb(...args);
+            shouldwait = true;
+            setTimeout(timeoutFunc, delay);
+        }
+        else{
+            argwaiting = args;
+        }
+    };
+}
