@@ -4,10 +4,10 @@
  
 >**它不应与函数的 `func.prototype` 属性混淆，后者指定在给定函数被用作构造函数时分配给所有对象实例的 `[[Prototype]]`。**  通过构造函数创建的每一个实例都会自动将构造函数的 `prototype` 属性作为其 `[[Prototype]]`。
 
-## 构造函数
+### 构造函数
  `Constructor.prototype` 默认具有一个自有属性：`constructor`，它引用了构造函数本身。即，`Box.prototype.constructor === Box`。**这允许我们在任何实例中访问原始构造函数。**
 
-## 原型链
+### 原型链
  `Constructor.prototype`表示某个构造函数的 `prototype`属性，它将成为这个构造函数实例的 `[[Prototype]]`, 也包括 `Constructor`自身的 `[[Prototype]]`。
  一个典型的构造函数将构建以下原型链：
  ```
@@ -20,7 +20,7 @@
  要构建更长的原型链，可用通过 Object.setPrototypeOf() 函数设置 Constructor.prototype 的 [[Prototype]]。
 
 ### 深入的研究
- JavaScript 中的函数总有一个默认的原型属性，箭头函数没有默认的原型属性，**而构造函数`new`出来的实例对象不属于函数**，但作为一个对象，它也有`[[Prototype]]` 。
+ JavaScript 中的函数总有一个默认的原型属性，箭头函数没有默认的原型属性，**而构造函数`new`出来的实例对象不是函数**，但作为一个对象，它也有 `[[Prototype]]`。
  >
  ```
     function doSomething() {}
@@ -29,6 +29,7 @@
     doSomeInstancing.prop = "some value"; // 向该对象添加一个属性
     console.log(doSomeInstancing);
  ```
+ 原型链查找过程：
 如上所示，`doSomeInstancing` 的 `[[Prototype]]` 是 `doSomething.prototype`。但是，这是做什么的呢？当你访问 `doSomeInstancing` 的属性时，运行时首先会查找 `doSomeInstancing` 是否有该属性。  
 
 如果 `doSomeInstancing` 没有该属性，**那么运行时会在 `doSomeInstancing.[[Prototype]]`（也就是 `doSomething.prototype`）中查找该属性。注意不是在doSomething上查找，而是它的`[[Prototype]]`** 要在对象自身上查找，而不是在其原型链上的某个地方，则有必要使用 `hasOwnProperty` 或 `Object.hasOwn` 方法。[示例](#性能)
@@ -44,8 +45,8 @@
     console.log("doSomething.prototype.foo: ", doSomething.prototype.foo); //bar
  ```
 
- ## 使用不同的方法来创建对象 (和改变原型链)
- ### 使用语法结构创建对象
+ ### 使用不同的方法来创建对象 (和改变原型链)
+ #### 使用语法结构创建对象
  ```
     const o = { a: 1 };
     // 新创建的对象 o 以 Object.prototype 作为它的 [[Prototype]]
@@ -67,7 +68,7 @@
     // （不要与 Object.prototype.__proto__ 访问器混淆）
     // p ---> o ---> Object.prototype ---> null
  ```
- ### 使用构造函数
+ #### 使用构造函数
  结合[Javascript-Garden关于构造函数中 `this`的指向的说明](https://github.com/BonsaiDen/JavaScript-Garden/blob/master/doc/zh/function/constructors.md)，了解构造函数创建对象的原理
  ```
     function Graph() {
@@ -84,7 +85,7 @@
     // 在执行 new Graph() 时，g.[[Prototype]] 是 Graph.prototype 的值。
     // g：Graph {vertices: Array(0), edges: Array(0)}
  ```
- ### 使用 Object.create()
+ #### 使用 Object.create()
  还允许使用 `Object.create(null)` 创建没有原型的对象
  ```
     const a = { a: 1 };
@@ -103,7 +104,7 @@
     // undefined，因为 d 没有继承 Object.prototype
  ```
 
- ### 使用类
+ #### 使用类
  ```
     class Polygon {
         constructor(height, width) {
@@ -130,7 +131,7 @@
     const square = new Square(2);
     // square ---> Square.prototype ---> Polygon.prototype ---> Object.prototype ---> null
  ```
- ### 使用 `Object.setPrototypeOf()`修改原型链
+ #### 使用 `Object.setPrototypeOf()`修改原型链
  虽然上面的所有方法都会在对象**创建时**设置原型链，但是 Object.setPrototypeOf() 允许修改**现有对象**的 `[[Prototype]]` 内部属性。
  ```
     const obj = { a: 1 };
@@ -138,7 +139,7 @@
     Object.setPrototypeOf(obj, anotherObj);
     // obj ---> anotherObj ---> Object.prototype ---> null
  ```
- ### 使用 __proto__ 访问器
+ #### 使用 __proto__ 访问器
  所有对象都继承了  `Object.prototype.__proto__` 访问器，它可以用来设置现有对象的 `[[Prototype]]`（如果对象没有覆盖 `__proto__` 属性）。
  > `Object.prototype.__proto__ `访问器是非标准的，且已被弃用。你几乎总是应该使用 `Object.setPrototypeOf` 来代替。
  ```
