@@ -46,7 +46,7 @@
  ```
 
  ### 使用不同的方法来创建对象 (和改变原型链)
- #### 使用语法结构创建对象
+ #### 1.使用语法结构创建对象
  ```
     const o = { a: 1 };
     // 新创建的对象 o 以 Object.prototype 作为它的 [[Prototype]]
@@ -68,7 +68,7 @@
     // （不要与 Object.prototype.__proto__ 访问器混淆）
     // p ---> o ---> Object.prototype ---> null
  ```
- #### 使用构造函数
+ #### 2.使用构造函数
  结合[Javascript-Garden关于构造函数中 `this`的指向的说明](https://github.com/BonsaiDen/JavaScript-Garden/blob/master/doc/zh/function/constructors.md)，了解构造函数创建对象的原理
  ```
     function Graph() {
@@ -85,7 +85,7 @@
     // 在执行 new Graph() 时，g.[[Prototype]] 是 Graph.prototype 的值。
     // g：Graph {vertices: Array(0), edges: Array(0)}
  ```
- #### 使用 Object.create()
+ #### 3.使用 Object.create()
  还允许使用 `Object.create(null)` 创建没有原型的对象
  ```
     const a = { a: 1 };
@@ -104,7 +104,7 @@
     // undefined，因为 d 没有继承 Object.prototype
  ```
 
- #### 使用类
+ #### 4.使用类
  ```
     class Polygon {
         constructor(height, width) {
@@ -139,7 +139,7 @@
     Object.setPrototypeOf(obj, anotherObj);
     // obj ---> anotherObj ---> Object.prototype ---> null
  ```
- #### 使用 __proto__ 访问器
+ #### 使用 __proto__ 访问器——不建议使用的方法
  所有对象都继承了  `Object.prototype.__proto__` 访问器，它可以用来设置现有对象的 `[[Prototype]]`（如果对象没有覆盖 `__proto__` 属性）。
  > `Object.prototype.__proto__ `访问器是非标准的，且已被弃用。你几乎总是应该使用 `Object.setPrototypeOf` 来代替。
  ```
