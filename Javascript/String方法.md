@@ -1,8 +1,8 @@
 #### String.prototype.slice() 
 * 语法
 ```
-slice(indexStart)
-slice(indexStart, indexEnd)
+  slice(indexStart)
+  slice(indexStart, indexEnd)
 ```
 * slice()方法提取文本中的一段，并返回一个新的字符串，不改变原来的字符串
 

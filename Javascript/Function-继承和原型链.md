@@ -21,7 +21,7 @@
 
 ### 深入的研究
  JavaScript 中的函数总有一个默认的原型属性，箭头函数没有默认的原型属性，**而构造函数`new`出来的实例对象不是函数**，但作为一个对象，它也有 `[[Prototype]]`。
- >
+
  ```
     function doSomething() {}
     doSomething.prototype.foo = "bar"; // 向原型上添加一个属性

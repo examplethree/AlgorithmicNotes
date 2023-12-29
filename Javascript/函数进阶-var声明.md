@@ -13,7 +13,18 @@
 ```
 
 #### “var” 声明的变量，可以在其声明语句前被使用
-注意：**声明会被提升，但是赋值不会。**
+> let const声明的变量，*不可以在声明前被使用*，也就是说，若使用，会报错 “Reference Error”。但var的只会以undefined的值被使用，不会报错。*实际上let const也存在提升*（红宝书）。
+> 注意：**声明会被提升，但是赋值不会。**
+```
+console.log(name);
+let name = "J" //ReferenceError:……
+
+console.log(name);
+const name = "J" //ReferenceError:……
+
+console.log(name);
+var name = "J" //Undefined
+```
 
 #### IIFE “立即调用函数表达式”（immediately-invoked function expressions，IIFE）
 …………
