@@ -1,6 +1,9 @@
 > https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 
 #### flexbox 是什么
+  弹性盒子（flexbox）是一个完整的模块，包括设置在父元素和子元素上的一系列属性。将子元素（items）沿着主轴（main-axis）或十字轴（cross-axis）进行布局。
+  
+  注意：主轴不一定是水平的，十字轴也不一定是垂直的，但十字轴一定是垂直于主轴的。
 
 #### 父项的属性
   1. display: flex 为其所有子项启用了flex 上下文（context）。
