@@ -13,3 +13,7 @@
 4. `addEventListener()`移除事件需要使用`removeListener()`方法，`onclick`只需要使指针指向null也就是赋值为null即可。
 
 3. 注册`addEventListener()`事件不需要写on，`onclick`事件必须加on
+
+#### 实际上是三种事件模型的区别
+  使用`addEventListener()`实际上是标准事件模型（DOM2级别），而on…属性绑定的事件是原始事件模型。
+  还有使用频率很低的IE事件模型，使用`attachEvent()`和`detachEvent()`，只有处理和冒泡阶段。

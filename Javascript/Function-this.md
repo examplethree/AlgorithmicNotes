@@ -37,7 +37,16 @@
         var that = this;
         function test() {
             // 使用 that 来指向 Foo 对象
+            console.log("test this", this);
+            console.log("test that", that);
         }
         test();
     };
+    //test this Window {window: Window, self: Window, document: document, name: '', location: Location, …}
+    //test that {method: ƒ}
  ```
+ * 内部函数不会继承外部函数的 this 值。在内部函数内， this 将是 window 或 undefined 。临时变量 that 用于将 的 this 外部值偷运到内部函数中。（另一种方法是在内部函数上使用 .bind(this) 。这两种方式都不是特别漂亮。
+ 
+ * 这个时候使用箭头函数用于内部，就可以继承外部函数的 this。
+ * 而对将使用 `object.method()` 语法调用的方法使用非箭头函数。这个函数将从调用方接收有意义的 this 值的函数，如上的Foo就传给了非箭头函数。
+
