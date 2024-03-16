@@ -4,7 +4,7 @@
 
 ### ES6的升级
  #### for of的用法
-   - 是什么：是一个用于可迭代对象，甚至是为了数组而设计的对象
+   - 是什么：是一个用于可迭代对象，甚至是为了数组而设计的对象。`for in`以字符串为值作为循环索引
 
  #### 模板字符串
    - 模板中替换的代码可以是任何表达式，包括函数调用、计算式等。
@@ -34,8 +34,8 @@
     //test this Window {window: Window, self: Window, document: document, name: '', location: Location, …}
     //test that {method: ƒ}
  ```
- 内部函数不会继承外部函数的 this 值。在内部函数内， this 将是 window 或 undefined .临时变量 that 用于将 的 this 外部值偷运到内部函数中。（另一种方法是在内部函数上使用 .bind(this) 。这两种方式都不是特别漂亮。
- 
+ 内部函数**不会**继承外部函数的 this 值。在内部函数内， this 将是 window 或 undefined .临时变量 that 用于将 的 this 外部值偷运到内部函数中。（另一种方法是在内部函数上使用 .bind(this) 。这两种方式都不是特别漂亮。
+
  #### 解构和赋值
    - 可以解构部分，剩下的使用rest模式统一解构：
    ```
@@ -60,4 +60,18 @@
    - 为未定义的要重构属性提供默认值
  
  #### Symbols
-   - 主要用于内部的方法实现，
+   - 主要用于解决命名冲突
+   - 对象中的属性检查方法会忽略Symbol属性，如`for-in` 循环  `Object.keys(obj)` 和 `Object.getOwnPropertyNames(obj)`。但仍然可以使用新的 API， `Object.getOwnPropertySymbols(obj)` 来列出对象的符号键
+   - symbol一旦创建就不能改变，不能在其上定义属性。这点上类似String
+
+   * 如何使用symbol
+     1. `Symbol()`调用，每次都返回一个新的唯一的symbol
+     2. `Symbol.for()`将访问一组称为符号注册表的现有符号。与 定义的唯一符号不同 Symbol() ，符号注册表中的符号是共享的。如果调用 `Symbol.for("cat")` 30 次，则每次都会返回相同的符号。当多个网页或同一网页中的多个模块需要共享一个符号时，注册表非常有用。
+     `c=Symbol.for('a'); d=Symbol.for('a') //c === d true`
+     `a=Symbol('a'); b=Symbol('a'); // a !== b !== c`
+     3. 使用标准定义的符号，如 `Symbol.iterator` 。一些符号由标准本身定义。每一个都有自己的特殊用途。
+     
+     *最后一个类别很有趣，因为它们显示了符号在实践中已经被证明是有用的。*
+
+ #### Map和Set——Collections
+   - Set和Map均可迭代
