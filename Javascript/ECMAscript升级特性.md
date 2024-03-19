@@ -75,3 +75,23 @@
 
  #### Map和Set——Collections
    - Set和Map均可迭代
+
+ #### Proxy和Reject
+   * 示例：一个没有proxy就不能做到的事。使用Proxy实现Tree()方法，能够一次性定义3个属性。
+   ```
+   > var tree = Tree();
+   > tree
+   { }
+   > tree.branch1.branch2.twig = "green";
+   > tree
+   { branch1: { branch2: { twig: "green" } } }
+   > tree.branch1.branch3.twig = "yellow";
+   { branch1: { branch2: { twig: "green" },
+   branch3: { twig: "yellow" }}}
+   ```
+   
+   * Proxy的局限
+     * 内建对象具有“内部插槽”，对这些对象的访问无法被代理。请参阅上文中的解决方法。
+     * 私有类字段也是如此，因为它们也是在内部使用插槽实现的。因此，代理方法的调用必须具有目标对象作为 `this` 才能访问它们。
+     * 对象的严格相等性检查 === 无法被拦截。
+     * 性能：基准测试（benchmark）取决于引擎，但通常使用最简单的代理访问属性所需的时间也要长几倍。实际上，这仅对某些“瓶颈”对象来说才重要。
