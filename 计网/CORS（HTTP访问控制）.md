@@ -1,5 +1,8 @@
-#### CORS策略允许的使用场景
- * 前文提到的由 XMLHttpRequest 或 Fetch API 发起的跨源 HTTP 请求。
+### 是什么
+  是一种通过设置 *HTTP报头字段*，由浏览器和服务器配合实现的跨域资源
+
+#### 什么情况下需要CORS策略，它允许的使用场景
+ * 由 XMLHttpRequest 或 Fetch API 发起的跨源 HTTP 请求。
  * Web 字体（CSS 中通过 @font-face 使用跨源字体资源），因此，网站就可以发布 TrueType 字体资源，并只允许已授权网站进行跨站调用。
  * WebGL 贴图。
  * 使用 drawImage() 将图片或视频画面绘制到 canvas。
