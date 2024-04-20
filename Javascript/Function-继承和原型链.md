@@ -8,7 +8,9 @@
  `Constructor.prototype` 默认具有一个自有属性：`constructor`，它引用了构造函数本身。即，`Box.prototype.constructor === Box`。**这允许我们在任何实例中访问原始构造函数。**
 
 ### 原型链
- `Constructor.prototype`表示某个构造函数的 `prototype`属性，它将成为这个构造函数实例的 `[[Prototype]]`, 也包括 `Constructor`自身的 `[[Prototype]]`。
+  * 解释原型链是什么时，可以从构造函数、实例和原型三者的关系入手，然后说到当原型是另一个类型的实例时，也存在一个指针指向另一个原型，而另一个原型也存在一个指针指向构造函数。
+
+  * `Constructor.prototype`表示某个构造函数的 `prototype`属性，它将成为这个构造函数实例的 `[[Prototype]]`, 也包括 `Constructor`自身的 `[[Prototype]]`。
  一个典型的构造函数将构建以下原型链：
  ```
     function Constructor() {}

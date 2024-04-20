@@ -16,7 +16,7 @@
 
 ### 创建BFC的方式
   1. 浮动元素（Float不为 none）
-  2. overflow 值不为 visible 或 clip 的块级元素。（如overflow:hidden
+  2. overflow 值不为 visible 或 clip 的块级元素。（如overflow:hidden，scroll等
   2. 行内块元素（display：inline-blokc）
   3. 弹性元素（display：flex
   4. 网格元素（display：grid
