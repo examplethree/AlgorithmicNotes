@@ -46,15 +46,17 @@
 渲染进程的核心工作就是将HTML、CSS和Javascript文件转换为可交互页面。
 
 1. 解析
-  * DOM树构建。导航提交后，*主线程* 开始解析HTML，构建文档对象模型 Document Object Model（DOM），构建完成后，触发`DOMContentLoaded`事件。*此时图片等资源还未加载，因此DOM树中对应的图片大小还为0。*
-  * 子资源加载，额外的资源，如图片，css文件等。通常会使用“preload scanner” 加速。对于 `<img>` `<link>`，会使用预加载。
+  * DOM树构建。导航提交后，*主线程* 开始解析HTML，构建文档对象模型 Document Object Model（DOM），构建完成后，**触发`DOMContentLoaded`事件**。*此时图片等资源还未加载，因此DOM树中对应的图片大小还为0。*
+  * 子资源加载，如图片，css文件等。通常会使用“preload scanner” 加速。对于 `<img>` `<link>`，会使用预加载。加载完成后**触发`Load`事件**。
   * JavaScript会阻塞解析。解析时遇到 `<script>`标签，解析会在此处停止，进而执行JavaScript代码。因为JavaScript会修改DOM树的结构，因此HTML解析需要等待Javascript执行。
-2. 提示浏览器如何加载资源。例如使用 `async`或 `defer`，提是浏览器不阻塞HTML解析的方式加载JavaScript脚本。`<link rel="preload">`的方法，告知该资源需要尽快加载。
-3. 样式计算。*主线程* 解析css文件，确定每个DOM节点的样式
-4. 布局。*主线程* 遍历前两步的结果，构建布局树（渲染树）。布局树包含xy坐标和边界框尺寸等信息，它的结构与 DOM 树类似，但它只包含与页面上可见的内容相关的信息。
->**注意：** 如果一个元素应用了 `display: none`，则该元素不是布局树的一部分，但是，一个 `visibility: hidden` 隐藏的元素会在布局树中。同样，如果一个具有类似 `p::before{content:"Hi!"}` 内容的伪类，则该伪类将包含在布局树中，即使该伪类不在 DOM 树中也是如此。
-5. 绘制Painting：*主线程* 遍历布局树，创建绘制记录（paint records/paint trees），其中包含了绘制过程的记录，如“先画背景、后文字、然后矩形”。
+（2. 提示浏览器如何加载资源。例如使用 `async`或 `defer`，提是浏览器不阻塞HTML解析的方式加载JavaScript脚本。`<link rel="preload">`的方法，告知该资源需要尽快加载。
 
+3. 样式计算。*主线程* 解析css文件，确定每个DOM节点的样式
+
+4. 布局。*主线程* 遍历前两步的结果，构建布局树（渲染树）。布局树*包含xy坐标和边界框尺寸*等信息，它的结构与 DOM 树类似，但它只包含与页面上可见的内容相关的信息。
+>**注意：** 如果一个元素应用了 `display: none`，则该元素**不是布局树的一部分（但是DOM树的一部分）**，但是，一个 `visibility: hidden` 隐藏的元素会在布局树中。同样，如果一个具有类似 `p::before{content:"Hi!"}` 内容的伪类，则该伪类将包含在布局树中，即使该伪类不在 DOM 树中也是如此。
+
+5. 绘制Painting：*主线程* 遍历布局树，创建绘制记录（paint records/paint trees），其中包含了绘制过程的记录，如“先画背景、后文字、然后矩形”。
 > 构造渲染树的过程中，需要计算节点的坐标位置和大小，这个过程就是**回流**。
 
 6. 合成 Composition。将paint records转换成屏幕上的像素（称为光栅化）
