@@ -4,7 +4,7 @@
  
 * process.nextTick和setImmediate的一个重要区别，也是**微任务和任务的区别**：
   微任务的回调总是在本次循环执行完，而任务的回调在下次循环触发，因此前者**执行效率也高**。
-  多个process.nextTick语句总是在当前"执行栈"一次执行完，多个setImmediate可能则需要多次loop才能执行完。事实上，这正是Node.js 10.0版添加setImmediate方法的原因，否则像下面这样的递归调用process.nextTick，将会陷入死循环，主线程根本不会去读取"事件队列"！
+  多个process.nextTick语句总是在当前"执行栈"一次执行完，多个setImmediate可能则需要多次loop才能执行完。事实上，这正是Node.js 10.0版*添加setImmediate方法的原因*，否则像下面这样的递归调用process.nextTick，将会陷入死循环，主线程根本不会去读取"事件队列"！
   ```
     process.nextTick(function foo() {
       process.nextTick(foo);
