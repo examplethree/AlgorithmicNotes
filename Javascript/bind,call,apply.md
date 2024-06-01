@@ -1,7 +1,7 @@
 #### Function.prototype.apply()
 * 语法
   参数为**数组形式**
-```
+``` javascript
   apply(thisArg)
   apply(thisArg, argsArray)
 ```
@@ -12,7 +12,7 @@
 #### Function.prototype.call()
 * 语法
   参数逐个给出
-```
+``` javascript
 call(thisArg)
 call(thisArg, arg1)
 call(thisArg, arg1, arg2, /* …, */ argN)
@@ -24,7 +24,7 @@ call(thisArg, arg1, arg2, /* …, */ argN)
 #### Function.prototype.bind()
 * 语法
   参数逐个给出
-```
+``` javascript
 call(thisArg)
 call(thisArg, arg1)
 call(thisArg, arg1, arg2, /* …, */ argN)

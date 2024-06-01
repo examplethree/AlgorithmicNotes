@@ -14,14 +14,14 @@
 
  #### 箭头函数
    - 箭头函数需要返回一个对象时，如果不显式使用`return`语句，则应该将该对象使用括号包含，如下：
-   ```
+   ``` javascript
    var chewToys = puppies.map(puppy => {});   // BUG!
    var chewToys = puppies.map(puppy => ({})); // ok
    ```
 
    * JavaScript的this如何工作的，不容易弄清楚
    **常用下文局部变量方法指向`Foo`对象**
- ```
+ ``` javascript
     Foo.method = function() {
         var that = this;
         function test() {
@@ -38,16 +38,16 @@
 
  #### 解构和赋值
    - 可以解构部分，剩下的使用rest模式统一解构：
-   ```
+   ``` javascript
    var [head, ...tail] = [1, 2, 3, 4];
    console.log(tail);
    // [2, 3, 4]
    ```
 
-   - 解构赋值适用于任何可迭代对象
+   - 解构赋值适用于*任何可迭代对象*
 
    - 解构对象可将属性值赋给变量。但属性名和变量名一致时，可省略后者对象中的属性名。如下：
-   ```
+   ``` javascript
     var { foo, bar } = { foo: "lorem", bar: "ipsum" };
     console.log(foo);
     // "lorem"
@@ -78,7 +78,7 @@
 
  #### Proxy和Reject
    * 示例：一个没有proxy就不能做到的事。使用Proxy实现Tree()方法，能够一次性定义3个属性。
-   ```
+   ``` javascript
    > var tree = Tree();
    > tree
    { }
