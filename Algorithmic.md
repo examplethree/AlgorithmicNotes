@@ -23,7 +23,7 @@
  * 74.Search a 2D Matrix(10.27)
  >*二分法取整出现死循环问题（该问题出现于while的进入条件为 `while(l<r)` ，即不取等号；取等号的写法能避免上下取整导致的死循环问题）*  `low=mid`（即if的判断条件是 `mid>target` ）mid应该向上取整；`high=mid`（即判断条件 `mid<target` ）应该向下取整。
  > 另一种while循环的写法可以避开对mid的上下取整问题，如下。但是对于LC74这样的问题，目标值不会出现，而是要找到所有小于target的最大数，则使用 `while(l<r)` 比较直观方便，退出循环时 `l===r` ，此时 `l` 指向的就是要找的值，或者这个数不存在，指向边界。
- ```
+ ``` javascript
     while(l<=r){
         if(nums[mid] < target){
             l = mid+1;

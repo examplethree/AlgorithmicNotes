@@ -48,5 +48,29 @@
  * 内部函数不会继承外部函数的 this 值。在内部函数内， this 将是 window 或 undefined 。临时变量 that 用于将 的 this 外部值偷运到内部函数中。（另一种方法是在内部函数上使用 .bind(this) 。这两种方式都不是特别漂亮。
  
  * 这个时候使用箭头函数用于内部，就可以继承外部函数的 this。
- * 而对将使用 `object.method()` 语法调用的方法应该使用非箭头函数，也就是**需要从一个对象的属性被调用的方法**，如果上述代码第一个function使用箭头函数，则`that`不会等于Foo，而是window。这个函数将从调用方接收有意义的 this 值的函数，如上的Foo就传给了非箭头函数。
+ * 而对将使用 `OBJECT.METHOD()` 语法调用的方法应该使用非箭头函数，也就是**需要从一个对象的属性被调用的方法**，如果上述代码第一个function使用箭头函数，则`that`不会等于Foo，而是window。这个函数将从调用方接收有意义的 this 值的函数，如上的Foo就传给了非箭头函数。
+
+* **子类中定义的普通函数无法覆盖父类同名箭头函数**，**父类中定义的箭头函数实际上会成为子类的实例方法**，同样，如果子类中也用箭头函数定义同名函数，则子类中定义的会覆盖父类中的。
+ ```javascript
+ class Parent {
+   getName (){
+     console.log(`Parent:${this.name}`);
+   }
+ }
+
+ class Child extends Parent{
+   constructor(name){
+     super();
+     this.name = name;
+   }
+   getName(){
+     console.log(`Child:${this.name}`);
+   }
+ }
+
+ let fn = new Child('trip')
+ let {getName} = new Child('trip')//this丢失
+ console.log('fn',Parent.prototype.getName)//如果要输出  Parent：trip。面试官答案：换成箭头函数定义父的getName
+ //是用箭头函数定义的方法会成为实例方法，function定义的则是原型方法
+ ```
 

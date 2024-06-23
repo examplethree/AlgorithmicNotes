@@ -59,6 +59,21 @@ function throttle(cb, delay=1000){
   }
 }
 
+// 简单版，可能有错
+function throttle(cb, dalay){
+  let shouldWait=false;
+
+  return (...args) => {
+    if(!shouldWait){
+      cb(...agrs);
+      shouldWait = true;
+      setTimeout(()=>{
+        shouldWait = false;
+      }, delay);
+    }
+  }
+}
+
 // 利用鼠标移动模拟
 document.addEventListener("mousemove", e => {
   incrementCount(defaultText);
