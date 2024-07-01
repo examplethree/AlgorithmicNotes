@@ -51,7 +51,7 @@ let arr = [
         }, 1000)
     }),
     new Promise((resolve, reject)=>{
-        setTimeout(()=>resolve(2), 0);
+        setTimeout(()=>reject(2), 2000);
     }),
     new Promise((res, rej) => {
         setTimeout(() => {
