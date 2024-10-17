@@ -3,15 +3,19 @@
  
  1. 全局范围内
  当在全部范围内使用 this，它将会指向全局对象。
+
  2. 函数调用
  **易出错，见后文示例**
  ```foo();```
+
  3. 方法调用
  ```test.foo();```
  这个例子中，this 指向 test 对象。
+
  4. 调用构造函数
  ```new foo();```
  如果函数倾向于和 `new` 关键词一块使用，则我们称这个函数是 构造函数。 在函数内部，`this` 指向新创建的对象。
+
  5. 显式的设置 `this`
  ```
     function foo(a, b, c) {}                  
@@ -56,11 +60,16 @@
    getName (){
      console.log(`Parent:${this.name}`);
    }
+  //  getName=()=>{
+  //    console.log(`Parent:${this.name}`);
+  //  }
  }
 
+ > extend以后，相当于在Child类上添加了getName的声明，声明方式与Parent中一致，实例调用getName时**实例方法“屏蔽”了原型方法**
  class Child extends Parent{
    constructor(name){
      super();
+    //  定义在实例上的属性
      this.name = name;
    }
    getName(){
@@ -70,7 +79,7 @@
 
  let fn = new Child('trip')
  let {getName} = new Child('trip')//this丢失
- console.log('fn',Parent.prototype.getName)//如果要输出  Parent：trip。面试官答案：换成箭头函数定义父的getName
+ console.log('fn',fn.getName())//如果要输出  Parent：trip。换成箭头函数定义父的getName
  //是用箭头函数定义的方法会成为实例方法，function定义的则是原型方法
  ```
 

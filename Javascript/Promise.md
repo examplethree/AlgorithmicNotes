@@ -18,7 +18,7 @@
   > Promise 对象的 `state` 和 `result` 属性都是内部的。我们无法直接访问它们。但我们可以对它们使用 `.then`/`.catch`/`.finally` 方法。我们在下面对这些方法进行了描述。
 
 ##### then
-  执行成功或失败都可以在then中处理。
+  **执行成功或失败都可以在then中处理**。
   * .then 的第一个参数是一个函数，该函数将在 promise `resolved` 且接收到结果后执行。
   * .then 的第二个参数也是一个函数，该函数将在 promise `rejected` 且接收到 error 信息后执行。
 

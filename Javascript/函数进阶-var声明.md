@@ -13,7 +13,7 @@
 ```
 
 #### “var” 声明的变量，可以在其声明语句前被使用
-> let const声明的变量，*不可以在声明前被使用*，也就是说，若使用，会报错 “Reference Error”。但var的只会以undefined的值被使用，不会报错。*实际上let const也存在提升*（红宝书）。
+> let const声明的变量，*不可以在声明前被使用*，也就是说，若使用，会报错 “Reference Error”。但var的只会以undefined的值被使用，不会报错。*实际上let const也存在提升*，但由于“**暂时性死区**”（temporal dead zone）的缘故，实际上不能在声明之前使用 let 变量。（红宝书）。
 > 注意：**声明会被提升，但是赋值不会。**
 ```
 console.log(name);

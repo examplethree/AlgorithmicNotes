@@ -72,7 +72,7 @@
  ```
  #### 2.使用构造函数
  结合[Javascript-Garden关于构造函数中 `this`的指向的说明](https://github.com/BonsaiDen/JavaScript-Garden/blob/master/doc/zh/function/constructors.md)，了解构造函数创建对象的原理
- ```
+ ```JavaScript
     function Graph() {
         this.vertices = [];
         this.edges = [];
@@ -89,7 +89,7 @@
  ```
  #### 3.使用 Object.create()
  还允许使用 `Object.create(null)` 创建没有原型的对象
- ```
+ ```JavaScript
     const a = { a: 1 };
     // a ---> Object.prototype ---> null
 
@@ -107,7 +107,7 @@
  ```
 
  #### 4.使用类
- ```
+ ```JavaScript
     class Polygon {
         constructor(height, width) {
             this.height = height;
@@ -135,7 +135,7 @@
  ```
  #### 使用 `Object.setPrototypeOf()`修改原型链
  虽然上面的所有方法都会在对象**创建时**设置原型链，但是 Object.setPrototypeOf() 允许修改**现有对象**的 `[[Prototype]]` 内部属性。
- ```
+ ```JavaScript
     const obj = { a: 1 };
     const anotherObj = { b: 2 };
     Object.setPrototypeOf(obj, anotherObj);

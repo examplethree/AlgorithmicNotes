@@ -16,9 +16,11 @@
 
 ### 创建BFC的方式
   1. 浮动元素（Float为 left或 right）
-  2. overflow 值不为 visible 或 clip 的块级元素。（如overflow:hidden，scroll，auto等
   2. display：inline-block，flex，grid等
+  3. overflow 值为hidden，scroll，auto等的块级元素。（不为 visible 或 clip）
   4. position：absolute或fixed
+
+> 根据 CSS 的布局规范，存在的格式化上下文主要有两种：**块格式化上下文（BFC）**和**行内格式化上下文（IFC）**，此外还有 *Flex 和 Grid 相关*的格式化上下文。
 
 ### 应用场景
   2. 自适应多栏布局
