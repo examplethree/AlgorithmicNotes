@@ -26,7 +26,7 @@
  当使用 Function.prototype 上的 call 或者 apply 方法时，函数内的 this 将会被 显式设置为函数调用的第一个参数。
 
  ### ★常见误解
- ```
+ ```javascript
     Foo.method = function() {
         function test() {
             // this 将会被设置为全局对象（译者注：浏览器环境中也就是 window 对象）
