@@ -1,3 +1,11 @@
+#### Why design 
+1. 复用方法
+  可以复用（别的类中定义的）方法，而不需要重新定义函数。例如，Array中的方法可以被**其他可迭代对象**使用，而不用局限在数组。
+
+2.**Apply用于不确定参数个数的函数**
+  apply可以实现直接传递参数而不用结构参数。
+
+
 ####  手动实现
 ```javascript
 Function.prototype.myCall = function (context, ...args){

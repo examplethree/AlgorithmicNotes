@@ -1,3 +1,37 @@
+### 从一个八股开始
+  Object instanceof Function
+  Function instanceof Object 的值都为 true
+  * `Function`和`Object`实际上都是一个函数（构造函数），他们有以下原型链。
+
+ Function
+ ↑
+ |__proto__
+ |
+ Function.prototype
+ ↑
+ |__proto__
+ |
+ Object.prototype
+ ↑
+ |__proto__
+ |
+ null
+
+Object
+ ↑
+ |__proto__
+ |
+ Function.prototype
+ ↑
+ |__proto__
+ |
+ Object.prototype
+ ↑
+ |__proto__
+ |
+ null
+
+
 # 继承和原型链
 
 > 遵循 ECMAScript 标准，符号 `someObject.[[Prototype]]` 用于标识 `someObject` 的原型。内部插槽 `[[Prototype]]` 可以通过 `Object.getPrototypeOf()` 和 `Object.setPrototypeOf()` 函数来访问。这个等同于 JavaScript 的非标准但被许多 JavaScript 引擎实现的属性 `__proto__` 访问器。为在保持简洁的同时避免混淆，在我们的符号中会避免使用 `obj.__proto__`，而是使用 `obj.[[Prototype]]` 作为代替。其对应于 `Object.getPrototypeOf(obj)`。
