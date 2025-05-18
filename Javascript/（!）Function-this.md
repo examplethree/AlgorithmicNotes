@@ -60,9 +60,9 @@
    getName (){
      console.log(`Parent:${this.name}`);
    }
-  //  getName=()=>{
-  //    console.log(`Parent:${this.name}`);
-  //  }
+   getName=()=>{
+     console.log(`Parent arrow:${this.name}`);
+   }
  }
 
  > extend以后，相当于在Child类上添加了getName的声明，声明方式与Parent中一致，实例调用getName时**实例方法“屏蔽”了原型方法**

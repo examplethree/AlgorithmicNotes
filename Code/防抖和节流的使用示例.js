@@ -74,13 +74,20 @@ function throttle(cb, dalay){
   }
 }
 
-// 利用鼠标移动模拟
-document.addEventListener("mousemove", e => {
-  incrementCount(defaultText);
-  updatDebounceText();
-  updatThrottleText();
-})
-
-function incrementCount(element) {
-  element.textContent = (parseInt(element.innerText) || 0) + 1;
+// 应用
+function handleScroll() {
+  console.log('滚动事件触发', new Date().toLocaleTimeString());
 }
+
+window.addEventListener('scroll', throttle(handleScroll, 3000));
+
+// 利用鼠标移动模拟
+// document.addEventListener("mousemove", e => {
+//   incrementCount(defaultText);
+//   updatDebounceText();
+//   updatThrottleText();
+// })
+
+// function incrementCount(element) {
+//   element.textContent = (parseInt(element.innerText) || 0) + 1;
+// }

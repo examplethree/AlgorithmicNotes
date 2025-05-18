@@ -15,6 +15,12 @@ function sum(a){
     add.value = ()=>a;
     return add;
 }
+/**
+ * 解析：
+ *     根据sum(1)(2)(3).value() = 6，可知返回的值首先得是一个函数，要能连续执行
+ *     其次，要有value属性，且value属性也是个函数，能够执行并返回一个常量值
+ */
+
 
 // 以下自己实现的方法问题在于，第一次返回的add方法没有value属性
 // function sum(num1){

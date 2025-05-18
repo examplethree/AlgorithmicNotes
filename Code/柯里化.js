@@ -38,3 +38,14 @@ function curry(func){
         }
     }
 }
+
+// 另一种写法
+function easyCurry(fn, ...args){
+    if(args.length >= fn.length){
+        fn(...args);
+    } else {
+        return (...moreArgs) => {
+            easyCurry(fn, ...args, ...moreArgs);
+        }
+    }
+}

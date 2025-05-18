@@ -10,3 +10,12 @@ Function.prototype.myCall = function(obj, ...args){
     delete context[funcKey];
     return res;
 }
+
+Function.prototype.myCall = function(obj, ...args){
+    let context = obj || window;
+    let fnName = new Symbol('fnName');
+    context[fnName] = this;
+    let res = context[fnName](...args);
+    delete context[fnName];
+    return res;
+}
